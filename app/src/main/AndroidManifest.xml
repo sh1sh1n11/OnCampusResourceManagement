@@ -28,7 +28,7 @@
             android:name=".MainActivity4"
             android:label="@string/title_activity_main_activity4" >
         </activity>
-        
+
     </application>
 
 </manifest>
