@@ -14,7 +14,7 @@ public class MainActivity4 extends ActionBarActivity {
         setContentView(R.layout.activity_main_activity4);
     }
 
-
+// some new comment
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
