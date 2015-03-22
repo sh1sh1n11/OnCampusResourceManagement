@@ -8,6 +8,7 @@ import android.view.MenuItem;
 //this is second comment
 public class MainActivity4 extends ActionBarActivity {
 // new comment
+    // newer comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
