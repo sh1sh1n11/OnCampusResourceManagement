@@ -14,7 +14,7 @@ public class MainActivity4 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity4);
     }
-//new
+//new line
 // some new comment
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
