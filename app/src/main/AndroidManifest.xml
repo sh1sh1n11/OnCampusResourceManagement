@@ -29,5 +29,5 @@
             android:label="@string/title_activity_main_activity4" >
         </activity>
     </application>
-
+// a new comment for test
 </manifest>
