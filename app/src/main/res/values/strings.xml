@@ -11,5 +11,6 @@
     <string name="title_activity_main_activity4">MainActivity4</string>
     <string name="title_activity_main_activity5">MainActivity5Activity</string>
     <string name="title_activity_main_activity6">MainActivity6</string>
+    <string name="title_activity_assign_shift">AssignShift</string>
 
 </resources>
