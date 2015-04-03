@@ -4,8 +4,8 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
     defaultConfig {
-        applicationId 'SCU_Resource_Manager'
-        minSdkVersion 21
+        applicationId 'msisproject1.com.project1'
+        minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
