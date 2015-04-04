@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.Parse;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -18,8 +20,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);  // links java code
+
+
         et= (EditText)findViewById(R.id.user_name_edit_id);
         tv = (TextView)findViewById(R.id.user_name_id);
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "y051ITxINowivGF6GmsZSj4NvAkEjxVvVsgNZYn7", "jnRaigGT5uTFgkZUvblwkwmjhTJm4yVhLQv3jzvm");
 
 
     }
