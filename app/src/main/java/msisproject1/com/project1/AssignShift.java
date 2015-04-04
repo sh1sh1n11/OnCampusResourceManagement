@@ -1,9 +1,11 @@
 package msisproject1.com.project1;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import msisproject1.com.project1.R;
 
@@ -36,5 +38,21 @@ public class AssignShift extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showDatePickerDialog(View view) {
+        DialogFragment newFragment = new DatePickerFragment();
+
+        /*
+        * void show(FragmentManager manager, String tag)
+          Display the dialog, adding the fragment to the given FragmentManager.
+        * */
+
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public void showTimePickerDialog(View view) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 }
