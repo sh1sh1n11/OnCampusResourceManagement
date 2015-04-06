@@ -1,5 +1,6 @@
 package msisproject1.com.project1;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,8 +16,8 @@ public class AssignShift extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_shift);
-    }
 
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

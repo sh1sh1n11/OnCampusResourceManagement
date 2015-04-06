@@ -1,6 +1,7 @@
 package msisproject1.com.project1;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
+
     EditText et;
     TextView tv;
     @Override
@@ -20,6 +22,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);  // links java code
         et= (EditText)findViewById(R.id.user_name_edit_id);
         tv = (TextView)findViewById(R.id.user_name_id);
+
+
 
 
     }
