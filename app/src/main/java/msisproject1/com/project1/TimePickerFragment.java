@@ -1,6 +1,7 @@
 package msisproject1.com.project1;
 
 
+import android.content.ContentValues;
 import android.support.v4.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.widget.TimePicker;
@@ -15,10 +16,8 @@ import android.text.format.DateFormat;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
+    public ContentValues values_TimePickerFragment = new ContentValues();
     @Override
-
-
-
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current time as the default values for the picker
         final Calendar c = Calendar.getInstance();
@@ -33,5 +32,8 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
 
+
+        values_TimePickerFragment.put("Hour",hourOfDay);
+        values_TimePickerFragment.put("Minute",minute);
     }
 }

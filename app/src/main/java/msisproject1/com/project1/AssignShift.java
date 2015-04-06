@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import msisproject1.com.project1.R;
 
 public class AssignShift extends ActionBarActivity {
+
+    Spinner employeeNameSpinner, employeeIdSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,5 +59,36 @@ public class AssignShift extends ActionBarActivity {
     public void showTimePickerDialog(View view) {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
+    public void spinnersUserInput(){
+        employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
+        employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
+
+        employeeNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        employeeIdSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
 }
