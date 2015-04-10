@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".cafe_hours"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +37,10 @@
         <activity
             android:name=".AssignShift"
             android:label="@string/title_activity_assign_shift" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_cafe_hours" >
         </activity>
     </application>
 

@@ -2,32 +2,32 @@
 <items version="2" >
 
     <item
-        jar="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="C:\Users\Janani\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/classes-d1f416a61de4a915bebe1c4abd5f98a34d7fc6e2.jar" />
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-b8b4141f11893fd0f40c12354a8cfea7fe0916b6.jar" />
     </item>
     <item
-        jar="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-2e2e0aa0bfacdcec82f0926231528091942a654a.jar" />
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-955b7797a0bac6fa0f29bdf682a60ecec6df79ee.jar" />
     </item>
     <item
-        jar="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/classes-08cf53fb85024e2336916718c03ba40a04e282bb.jar" />
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\classes-80d45417327689924c7b8940c602f2e4088c13ba.jar" />
     </item>
     <item
-        jar="/Users/shanky/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-04944b7791fa41d7d66d27fa313cb25ecba64f89.jar" />
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\classes-674119f070cdd294b901bd3656f7c14d808fcd23.jar" />
     </item>
 
 </items>
