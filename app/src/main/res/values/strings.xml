@@ -12,6 +12,31 @@
     <string name="title_activity_main_activity5">MainActivity5Activity</string>
     <string name="title_activity_main_activity6">MainActivity6</string>
     <string name="title_activity_assign_shift">AssignShift</string>
+    <string name="title_activity_cafe_hours">cafe_hours</string>
+
+
+    <string name="ch_start_date">START DATE</string>
+    <string name="ch_end_date">END DATE</string>
+    <string name="ch_day">DAY</string>
+    <!-- Spinner Options -->
+
+    <string-array name="ch_spinner_day">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <string name="ch_open_time">OPEN TIME</string>
+    <string name="ch_close_time">CLOSE TIME</string>
+    <string name="ch_submit">SUBMIT</string>
+    <string name="ch_pick_date">PICK DATE</string>
+    <string name="ch_pick_time">PICK TIME</string>
+
     <string name="assignShift_pickDate">pick date</string>
+
 
 </resources>
