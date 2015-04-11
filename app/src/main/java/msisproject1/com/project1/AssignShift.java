@@ -2,6 +2,7 @@ package msisproject1.com.project1;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -28,14 +30,19 @@ import java.util.Date;
 import msisproject1.com.project1.R;
 
 public class AssignShift extends ActionBarActivity {
-     SQLiteDatabase OnCampusResourceManagementDB = null;
+
+    SQLiteDatabase OnCampusResourceManagementDB = null;
     Calendar calendar = Calendar.getInstance();
+
     Date date;
     String sTime ="";
     String eTime="";
+    String itemSelectedInNameSpinner;
+    String itemSelectedInIDSpinner;
 
     Spinner employeeNameSpinner, employeeIdSpinner;
     Button pickDate, pickStartTime, pickEndTime, Confirm;
+    TextView result;
 
 
     @Override
@@ -46,7 +53,9 @@ public class AssignShift extends ActionBarActivity {
         addItemsToEmployeeNameSpinner();
         addItemsToEmployeeIDSpinner();
         intializeButtons();
+        result = (TextView) findViewById(R.id.result);
         createDatabase();
+        spinnersUserInput();
         pickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +116,7 @@ public class AssignShift extends ActionBarActivity {
         try {
             OnCampusResourceManagementDB = this.openOrCreateDatabase("OnCampusResourceManagementDB",MODE_PRIVATE,null);
             OnCampusResourceManagementDB.execSQL("CREATE TABLE IF NOT EXISTS assignShift " + "(employeeId integer primary key autoincrement, " +
-                    "employeeName VARCHAR, shiftDate text, startTime text, endTime text);");
+                    "employeeName VARCHAR, shiftDate text, startTime VARCHAR, endTime VARCHAR);");
             File database = getApplicationContext().getDatabasePath("OnCampusResourceManagementDB.db");
             if(database.exists()){
                 Toast.makeText(this,"Database Created", Toast.LENGTH_SHORT).show();
@@ -179,11 +188,15 @@ public class AssignShift extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
+
+                itemSelectedInNameSpinner = parentView.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
+
+                itemSelectedInNameSpinner = null;
             }
 
         });
@@ -192,17 +205,68 @@ public class AssignShift extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
+
+                itemSelectedInIDSpinner = parentView.getItemAtPosition(position).toString();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
+                itemSelectedInIDSpinner=null;
             }
 
         });
     }
 
     public void assignShiftOnConfirm(View view) {
+        OnCampusResourceManagementDB.execSQL("INSERT INTO assignShift (employeeID, employeeName, shiftDate, startTime, endTime) VALUES ('" +
+        itemSelectedInIDSpinner + "','" + itemSelectedInNameSpinner + "','" + date + "','" + sTime + "','" + eTime + "');");
 
     }
+
+    public void getAssignedShifts(View view) {
+
+        // A Cursor provides read and write access to database results
+        Cursor cursor = OnCampusResourceManagementDB.rawQuery("SELECT * FROM assignShift", null);
+
+        // Get the index for the column name provided
+        int employeeIDColumn = cursor.getColumnIndex("employeeID");
+        int employeeNameColumn = cursor.getColumnIndex("employeeName");
+        int shiftDateColumn = cursor.getColumnIndex("shiftDate");
+        int startTimeColumn = cursor.getColumnIndex("startTime");
+        int endTimeColumn = cursor.getColumnIndex("endTime");
+
+        // Move to the first row of results
+        cursor.moveToFirst();
+
+        String assignedShiftsList = "";
+
+        // Verify that we have results
+        if(cursor != null && (cursor.getCount() > 0)){
+
+            do{
+                // Get the results and store them in a String
+                String employeeID = cursor.getString(employeeIDColumn);
+                String employeeName = cursor.getString(employeeNameColumn);
+                String shiftDate = cursor.getString(shiftDateColumn);
+                String startTime = cursor.getString(startTimeColumn);
+                String endTime = cursor.getString(endTimeColumn);
+
+                assignedShiftsList = assignedShiftsList + employeeID + " : " + employeeName + " : " + shiftDate + " : " +
+                        startTime + " : " + endTime + "\n";
+
+                // Keep getting results as long as they exist
+            }while(cursor.moveToNext());
+
+            result.setText(assignedShiftsList);
+
+        } else {
+
+            Toast.makeText(this, "No Results to Show", Toast.LENGTH_SHORT).show();
+            result.setText("");
+
+        }
+
+    }
+
 }
