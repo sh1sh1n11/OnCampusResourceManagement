@@ -14,7 +14,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     public static final String TABLE_ASSIGNSHIFT = "assignShift";
 
-    private static final String ASSIGNSHIFT_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS assignShift" + "(employeeId integer primary key autoincrement, " +
+    private static final String ASSIGNSHIFT_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS assignShift " + "(employeeId integer primary key autoincrement, " +
             "employeeName VARCHAR, shiftDate integer, startTime integer, endTime integer";
     public DatabaseHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
 
@@ -25,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ASSIGNSHIFT_TABLE_CREATE);
+
 
     }
 

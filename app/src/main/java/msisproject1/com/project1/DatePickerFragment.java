@@ -14,6 +14,7 @@ import java.util.Calendar;
  */
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
+    private Calendar dateTime=Calendar.getInstance();
 
 
     //public int Year, Month, Day;
@@ -33,6 +34,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
 
+        dateTime.set(year,monthOfYear,dayOfMonth);
         values_DatePickerFragment.put("Day",dayOfMonth);
         values_DatePickerFragment.put("Month",monthOfYear);
         values_DatePickerFragment.put("Year",year);

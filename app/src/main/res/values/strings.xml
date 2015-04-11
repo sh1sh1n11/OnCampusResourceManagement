@@ -13,5 +13,6 @@
     <string name="title_activity_main_activity6">MainActivity6</string>
     <string name="title_activity_assign_shift">AssignShift</string>
     <string name="assignShift_pickDate">pick date</string>
+    <string name="assignShift_Confirm">confirm</string>
 
 </resources>

@@ -57,9 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/assignShift_pickDate"
-            android:onClick="showDatePickerDialog"
             android:layout_marginLeft="120dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:id="@+id/AssignShiftPickDate"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -67,7 +67,8 @@
             android:text="pick start time"
             android:onClick="showTimePickerDialog"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="100dp"/>
+            android:layout_marginLeft="100dp"
+            android:id="@+id/AssignShiftPickStartTime"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -75,9 +76,19 @@
             android:text="pick end time"
             android:onClick="showTimePickerDialog"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="110dp"/>
+            android:layout_marginLeft="110dp"
+            android:id="@+id/AssignShiftPickEndTime"/>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/assignShift_Confirm"
+        android:id="@+id/assignShiftConfirm"
+        android:onClick="assignShiftOnConfirm"/>
 
     </LinearLayout>
 
