@@ -223,8 +223,14 @@ public class AssignShift extends ActionBarActivity {
         });
     }
 
-    protected void updateDisplay(String message) {
-        result.append(message + "\n");
+    protected void updateDisplay() {
+
+        if (assignShiftPlainOldJavaObjectsList != null) {
+            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
+                result.append(as_POJO.getEmployee_name() + "\n");
+            }
+        }
+
     }
 
     protected boolean isOnline() {
@@ -244,7 +250,7 @@ public class AssignShift extends ActionBarActivity {
 
         @Override
         protected void onPreExecute() {
-            updateDisplay("Starting task");
+//            updateDisplay("Starting task");
 
             if (tasks.size() == 0) {
                 pb.setVisibility(View.VISIBLE);
@@ -255,7 +261,7 @@ public class AssignShift extends ActionBarActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            updateDisplay("entered doInBackground() method");
+            updateDisplay();
             String content = HttpManager.getData(params[0]);
             return content;
         }
@@ -263,7 +269,7 @@ public class AssignShift extends ActionBarActivity {
         @Override
         protected void onPostExecute(String result) {
             assignShiftPlainOldJavaObjectsList = assignShiftJSONParser.parseFeed(result);
-            updateDisplay(String.valueOf(assignShiftPlainOldJavaObjectsList));
+            updateDisplay();
 
             tasks.remove(this);
             if (tasks.size() == 0) {
@@ -273,8 +279,9 @@ public class AssignShift extends ActionBarActivity {
         }
 
         @Override
-        protected void onProgressUpdate(String... values) {
-            updateDisplay(values[0]);
+        protected void onProgressUpdate(String... values)
+        {
+//            updateDisplay(values[0]);
         }
 
     }
