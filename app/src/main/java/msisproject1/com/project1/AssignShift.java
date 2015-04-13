@@ -2,12 +2,13 @@ package msisproject1.com.project1;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.DialogFragment;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,23 +16,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-import msisproject1.com.project1.R;
 
 public class AssignShift extends ActionBarActivity {
 
-    SQLiteDatabase OnCampusResourceManagementDB = null;
     Calendar calendar = Calendar.getInstance();
 
     Date date;
@@ -43,6 +40,9 @@ public class AssignShift extends ActionBarActivity {
     Spinner employeeNameSpinner, employeeIdSpinner;
     Button pickDate, pickStartTime, pickEndTime, Confirm;
     TextView result;
+    ProgressBar pb;
+    List<MyTask> tasks;
+    List<assignShiftPlainOldJavaObjects> assignShiftPlainOldJavaObjectsList;
 
 
     @Override
@@ -52,10 +52,16 @@ public class AssignShift extends ActionBarActivity {
 
         addItemsToEmployeeNameSpinner();
         addItemsToEmployeeIDSpinner();
-        intializeButtons();
-        result = (TextView) findViewById(R.id.result);
+        initializeWidgets();
+        pb.setVisibility(View.INVISIBLE);
         createDatabase();
         spinnersUserInput();
+        setListeners();
+        checkOnlineInitializeAsyncTask();
+
+        }
+
+    private void setListeners() {
         pickDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,9 +84,7 @@ public class AssignShift extends ActionBarActivity {
                 new TimePickerDialog(AssignShift.this,EndTimeListener,calendar.get(Calendar.HOUR),calendar.get(calendar.MINUTE),false).show();
             }
         });
-
-        }
-
+    }
 
 
     DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
@@ -112,29 +116,34 @@ public class AssignShift extends ActionBarActivity {
         }
     };
 
-    public void createDatabase(){
-        try {
-            OnCampusResourceManagementDB = this.openOrCreateDatabase("OnCampusResourceManagementDB",MODE_PRIVATE,null);
-            OnCampusResourceManagementDB.execSQL("CREATE TABLE IF NOT EXISTS assignShift " + "(employeeId integer primary key autoincrement, " +
-                    "employeeName VARCHAR, shiftDate text, startTime VARCHAR, endTime VARCHAR);");
-            File database = getApplicationContext().getDatabasePath("OnCampusResourceManagementDB.db");
-            if(database.exists()){
-                Toast.makeText(this,"Database Created", Toast.LENGTH_SHORT).show();
-            } else{
-                Toast.makeText(this,"Database Missing",Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        catch (Exception e){
-            Log.e("AssignShift ERROR", "Error Creating Database");
+    public void checkOnlineInitializeAsyncTask() {
+        if (isOnline()) {
+            requestData("http://localhost:63342/OnCampusResourceManagementPHP/assignShift.php");
+        } else {
+            Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
         }
     }
 
-    private void intializeButtons() {
+    private void requestData(String uri) {
+        MyTask task = new MyTask();
+        task.execute(uri);
+    }
+
+    public void createDatabase(){
+
+    }
+
+    private void initializeWidgets() {
         pickDate = (Button) findViewById(R.id.AssignShiftPickDate);
         pickStartTime = (Button) findViewById(R.id.AssignShiftPickStartTime);
         pickEndTime = (Button) findViewById(R.id.AssignShiftPickEndTime);
         Confirm = (Button) findViewById(R.id.assignShiftConfirm );
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+        result = (TextView) findViewById(R.id.result);
+        result.setMovementMethod(new ScrollingMovementMethod());
+        employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
+        employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
+        tasks = new ArrayList<>();
     }
 
     private void addItemsToEmployeeIDSpinner() {
@@ -152,9 +161,6 @@ public class AssignShift extends ActionBarActivity {
         employeeNameSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         employeeNameSpinner.setAdapter(employeeNameSpinnerAdapter);
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -181,8 +187,7 @@ public class AssignShift extends ActionBarActivity {
 
 
     public void spinnersUserInput(){
-        employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
-        employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
+
 
         employeeNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -218,55 +223,61 @@ public class AssignShift extends ActionBarActivity {
         });
     }
 
-    public void assignShiftOnConfirm(View view) {
-        OnCampusResourceManagementDB.execSQL("INSERT INTO assignShift (employeeID, employeeName, shiftDate, startTime, endTime) VALUES ('" +
-        itemSelectedInIDSpinner + "','" + itemSelectedInNameSpinner + "','" + date + "','" + sTime + "','" + eTime + "');");
-
+    protected void updateDisplay(String message) {
+        result.append(message + "\n");
     }
 
-    public void getAssignedShifts(View view) {
-
-        // A Cursor provides read and write access to database results
-        Cursor cursor = OnCampusResourceManagementDB.rawQuery("SELECT * FROM assignShift", null);
-
-        // Get the index for the column name provided
-        int employeeIDColumn = cursor.getColumnIndex("employeeID");
-        int employeeNameColumn = cursor.getColumnIndex("employeeName");
-        int shiftDateColumn = cursor.getColumnIndex("shiftDate");
-        int startTimeColumn = cursor.getColumnIndex("startTime");
-        int endTimeColumn = cursor.getColumnIndex("endTime");
-
-        // Move to the first row of results
-        cursor.moveToFirst();
-
-        String assignedShiftsList = "";
-
-        // Verify that we have results
-        if(cursor != null && (cursor.getCount() > 0)){
-
-            do{
-                // Get the results and store them in a String
-                String employeeID = cursor.getString(employeeIDColumn);
-                String employeeName = cursor.getString(employeeNameColumn);
-                String shiftDate = cursor.getString(shiftDateColumn);
-                String startTime = cursor.getString(startTimeColumn);
-                String endTime = cursor.getString(endTimeColumn);
-
-                assignedShiftsList = assignedShiftsList + employeeID + " : " + employeeName + " : " + shiftDate + " : " +
-                        startTime + " : " + endTime + "\n";
-
-                // Keep getting results as long as they exist
-            }while(cursor.moveToNext());
-
-            result.setText(assignedShiftsList);
-
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
         } else {
+            return false;
+        }
+    }
 
-            Toast.makeText(this, "No Results to Show", Toast.LENGTH_SHORT).show();
-            result.setText("");
+    public void assignShiftOnConfirm(View view) {
+    }
+
+    private class MyTask extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            updateDisplay("Starting task");
+
+            if (tasks.size() == 0) {
+                pb.setVisibility(View.VISIBLE);
+            }
+            tasks.add(this);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            updateDisplay("entered doInBackground() method");
+            String content = HttpManager.getData(params[0]);
+            return content;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            assignShiftPlainOldJavaObjectsList = assignShiftJSONParser.parseFeed(result);
+            updateDisplay(String.valueOf(assignShiftPlainOldJavaObjectsList));
+
+            tasks.remove(this);
+            if (tasks.size() == 0) {
+                pb.setVisibility(View.INVISIBLE);
+            }
 
         }
 
+        @Override
+        protected void onProgressUpdate(String... values) {
+            updateDisplay(values[0]);
+        }
+
     }
+
 
 }
