@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+
 public class HttpManager {
 
     public static String getData(String uri) {
@@ -41,4 +42,5 @@ public class HttpManager {
         }
 
     }
+
 }

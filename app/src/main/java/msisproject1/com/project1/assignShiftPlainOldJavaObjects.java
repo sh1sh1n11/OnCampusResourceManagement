@@ -51,6 +51,4 @@ public class assignShiftPlainOldJavaObjects {
     public void setEnd_time(String end_time) {
         this.end_time = end_time;
     }
-
-
 }

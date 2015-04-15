@@ -1,5 +1,6 @@
 package msisproject1.com.project1;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -27,18 +28,17 @@ import java.util.Date;
 import java.util.List;
 
 
-public class AssignShift extends ActionBarActivity {
+public class AssignShift extends Activity {
 
     Calendar calendar = Calendar.getInstance();
-
     Date date;
     String sTime ="";
     String eTime="";
     String itemSelectedInNameSpinner;
     String itemSelectedInIDSpinner;
-
     Spinner employeeNameSpinner, employeeIdSpinner;
     Button pickDate, pickStartTime, pickEndTime, Confirm;
+
     TextView result;
     ProgressBar pb;
     List<MyTask> tasks;
@@ -49,7 +49,6 @@ public class AssignShift extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_shift);
-
         addItemsToEmployeeNameSpinner();
         addItemsToEmployeeIDSpinner();
         initializeWidgets();
@@ -58,7 +57,6 @@ public class AssignShift extends ActionBarActivity {
         spinnersUserInput();
         setListeners();
         checkOnlineInitializeAsyncTask();
-
         }
 
     private void setListeners() {
@@ -67,7 +65,6 @@ public class AssignShift extends ActionBarActivity {
             public void onClick(View v) {
 
                 new DatePickerDialog(AssignShift.this,dateListener,calendar.get(calendar.YEAR),calendar.get(calendar.MONTH),calendar.get(calendar.DAY_OF_MONTH)).show();
-
             }
         });
 
@@ -116,22 +113,6 @@ public class AssignShift extends ActionBarActivity {
         }
     };
 
-    public void checkOnlineInitializeAsyncTask() {
-        if (isOnline()) {
-            requestData("http://localhost:63342/OnCampusResourceManagementPHP/assignShift.php");
-        } else {
-            Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void requestData(String uri) {
-        MyTask task = new MyTask();
-        task.execute(uri);
-    }
-
-    public void createDatabase(){
-
-    }
 
     private void initializeWidgets() {
         pickDate = (Button) findViewById(R.id.AssignShiftPickDate);
@@ -145,6 +126,43 @@ public class AssignShift extends ActionBarActivity {
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
         tasks = new ArrayList<>();
     }
+
+    public void checkOnlineInitializeAsyncTask() {
+        if (isOnline()) {
+            requestData("http://10.0.2.2/assignShift.php");
+        } else {
+            Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestData(String uri) {
+        MyTask task = new MyTask();
+        task.execute(uri);
+    }
+    protected void updateDisplay() {
+
+        if (assignShiftPlainOldJavaObjectsList != null) {
+            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
+                result.append(as_POJO.getEmployee_id() + " " + as_POJO.getEmployee_name() + " " +  as_POJO.getShift_date() + " " + as_POJO.getStart_time() + " " + as_POJO.getEnd_time() + "\n");
+            }
+        }
+    }
+
+    public void createDatabase(){
+
+    }
+
+
 
     private void addItemsToEmployeeIDSpinner() {
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
@@ -180,14 +198,12 @@ public class AssignShift extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
 
 
     public void spinnersUserInput(){
-
 
         employeeNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -196,14 +212,12 @@ public class AssignShift extends ActionBarActivity {
 
                 itemSelectedInNameSpinner = parentView.getItemAtPosition(position).toString();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
 
                 itemSelectedInNameSpinner = null;
             }
-
         });
 
         employeeIdSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -213,34 +227,12 @@ public class AssignShift extends ActionBarActivity {
 
                 itemSelectedInIDSpinner = parentView.getItemAtPosition(position).toString();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
                 itemSelectedInIDSpinner=null;
             }
-
         });
-    }
-
-    protected void updateDisplay() {
-
-        if (assignShiftPlainOldJavaObjectsList != null) {
-            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
-                result.append(as_POJO.getEmployee_name() + "\n");
-            }
-        }
-
-    }
-
-    protected boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public void assignShiftOnConfirm(View view) {
@@ -250,7 +242,6 @@ public class AssignShift extends ActionBarActivity {
 
         @Override
         protected void onPreExecute() {
-//            updateDisplay("Starting task");
 
             if (tasks.size() == 0) {
                 pb.setVisibility(View.VISIBLE);
@@ -261,7 +252,6 @@ public class AssignShift extends ActionBarActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            updateDisplay();
             String content = HttpManager.getData(params[0]);
             return content;
         }
@@ -275,13 +265,12 @@ public class AssignShift extends ActionBarActivity {
             if (tasks.size() == 0) {
                 pb.setVisibility(View.INVISIBLE);
             }
-
         }
 
         @Override
         protected void onProgressUpdate(String... values)
         {
-//            updateDisplay(values[0]);
+
         }
 
     }
