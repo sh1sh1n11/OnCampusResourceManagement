@@ -6,17 +6,17 @@ package msisproject1.com.project1;
 
 public class assignShiftPlainOldJavaObjects {
 
-    private int employee_id;
+    private String employee_id;
     private String employee_name;
     private String shift_date;
     private String start_time;
     private String end_time;
 
-    public int getEmployee_id() {
+    public String getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(int employee_id) {
+    public void setEmployee_id(String employee_id) {
         this.employee_id = employee_id;
     }
 

@@ -20,7 +20,7 @@ public class assignShiftJSONParser {
             for(int i = 0; i<ar.length(); i++){
                 JSONObject obj = ar.getJSONObject(i);
                 assignShiftPlainOldJavaObjects as_POJO = new assignShiftPlainOldJavaObjects();
-                as_POJO.setEmployee_id(obj.getInt("employee_id"));
+                as_POJO.setEmployee_id(obj.getString("employee_id"));
                 as_POJO.setEmployee_name(obj.getString("employee_name"));
                 as_POJO.setShift_date(obj.getString("shift_date"));
                 as_POJO.setStart_time(obj.getString("start_time"));

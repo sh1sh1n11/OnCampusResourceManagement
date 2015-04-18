@@ -49,15 +49,14 @@ public class AssignShift extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_shift);
-        addItemsToEmployeeNameSpinner();
-        addItemsToEmployeeIDSpinner();
         initializeWidgets();
         pb.setVisibility(View.INVISIBLE);
         createDatabase();
         spinnersUserInput();
         setListeners();
         checkOnlineInitializeAsyncTask();
-        }
+
+    }
 
     private void setListeners() {
         pickDate.setOnClickListener(new View.OnClickListener() {
@@ -165,19 +164,51 @@ public class AssignShift extends Activity {
 
 
     private void addItemsToEmployeeIDSpinner() {
+
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
-        ArrayAdapter<CharSequence> employeeIDSpinnerAdapter =
-                ArrayAdapter.createFromResource(this, R.array.userIDs, android.R.layout.simple_spinner_item);
-        employeeIDSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        List<String> labels = new ArrayList<String>();
+
+        if (assignShiftPlainOldJavaObjectsList != null) {
+            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
+                labels.add(as_POJO.getEmployee_id());
+            }
+        }
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> employeeIDSpinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, labels);
+
+        // Drop down layout style - list view with radio button
+        employeeIDSpinnerAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
         employeeIdSpinner.setAdapter(employeeIDSpinnerAdapter);
+
     }
 
     private void addItemsToEmployeeNameSpinner() {
+
         employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
-        ArrayAdapter<CharSequence> employeeNameSpinnerAdapter =
-                ArrayAdapter.createFromResource(this, R.array.userNames,android.R.layout.simple_spinner_item);
-        employeeNameSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        employeeNameSpinner.setAdapter(employeeNameSpinnerAdapter);
+        List<String> labels = new ArrayList<String>();
+
+        if (assignShiftPlainOldJavaObjectsList != null) {
+            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
+                labels.add(as_POJO.getEmployee_name());
+            }
+        }
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> employeeIDSpinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, labels);
+
+        // Drop down layout style - list view with radio button
+        employeeIDSpinnerAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        employeeNameSpinner.setAdapter(employeeIDSpinnerAdapter);
+
     }
 
     @Override
@@ -260,6 +291,8 @@ public class AssignShift extends Activity {
         protected void onPostExecute(String result) {
             assignShiftPlainOldJavaObjectsList = assignShiftJSONParser.parseFeed(result);
             updateDisplay();
+            addItemsToEmployeeIDSpinner();
+            addItemsToEmployeeNameSpinner();
 
             tasks.remove(this);
             if (tasks.size() == 0) {
