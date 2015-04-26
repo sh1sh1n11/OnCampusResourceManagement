@@ -6,8 +6,6 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
@@ -17,11 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,12 +35,7 @@ public class AssignShift extends Activity {
     String itemSelectedInNameSpinner;
     String itemSelectedInIDSpinner;
     Spinner employeeNameSpinner, employeeIdSpinner;
-    Button pickDate, pickStartTime, pickEndTime, Confirm;
-
-    TextView result;
-    ProgressBar pb;
-    List<MyTask> tasks;
-    List<assignShiftPlainOldJavaObjects> assignShiftPlainOldJavaObjectsList;
+    ImageButton pickDate, pickStartTime, pickEndTime, Confirm;
 
 
     @Override
@@ -50,11 +43,8 @@ public class AssignShift extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_shift);
         initializeWidgets();
-        pb.setVisibility(View.INVISIBLE);
-        createDatabase();
         spinnersUserInput();
         setListeners();
-        checkOnlineInitializeAsyncTask();
 
     }
 
@@ -114,25 +104,14 @@ public class AssignShift extends Activity {
 
 
     private void initializeWidgets() {
-        pickDate = (Button) findViewById(R.id.AssignShiftPickDate);
-        pickStartTime = (Button) findViewById(R.id.AssignShiftPickStartTime);
-        pickEndTime = (Button) findViewById(R.id.AssignShiftPickEndTime);
-        Confirm = (Button) findViewById(R.id.assignShiftConfirm );
-        pb = (ProgressBar) findViewById(R.id.progressBar);
-        result = (TextView) findViewById(R.id.result);
-        result.setMovementMethod(new ScrollingMovementMethod());
+        pickDate = (ImageButton) findViewById(R.id.AssignShiftPickDate);
+        pickStartTime = (ImageButton) findViewById(R.id.AssignShiftPickStartTime);
+        pickEndTime = (ImageButton) findViewById(R.id.AssignShiftPickEndTime);
+        Confirm = (ImageButton) findViewById(R.id.assignShiftConfirm );
         employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
-        tasks = new ArrayList<>();
     }
 
-    public void checkOnlineInitializeAsyncTask() {
-        if (isOnline()) {
-            requestData("http://10.0.2.2/assignShift.php");
-        } else {
-            Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
-        }
-    }
 
     protected boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -144,35 +123,11 @@ public class AssignShift extends Activity {
         }
     }
 
-    private void requestData(String uri) {
-        MyTask task = new MyTask();
-        task.execute(uri);
-    }
-    protected void updateDisplay() {
-
-        if (assignShiftPlainOldJavaObjectsList != null) {
-            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
-                result.append(as_POJO.getEmployee_id() + " " + as_POJO.getEmployee_name() + " " +  as_POJO.getShift_date() + " " + as_POJO.getStart_time() + " " + as_POJO.getEnd_time() + "\n");
-            }
-        }
-    }
-
-    public void createDatabase(){
-
-    }
-
-
 
     private void addItemsToEmployeeIDSpinner() {
 
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
         List<String> labels = new ArrayList<String>();
-
-        if (assignShiftPlainOldJavaObjectsList != null) {
-            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
-                labels.add(as_POJO.getEmployee_id());
-            }
-        }
 
         // Creating adapter for spinner
         ArrayAdapter<String> employeeIDSpinnerAdapter = new ArrayAdapter<String>(this,
@@ -191,12 +146,6 @@ public class AssignShift extends Activity {
 
         employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
         List<String> labels = new ArrayList<String>();
-
-        if (assignShiftPlainOldJavaObjectsList != null) {
-            for (assignShiftPlainOldJavaObjects as_POJO : assignShiftPlainOldJavaObjectsList) {
-                labels.add(as_POJO.getEmployee_name());
-            }
-        }
 
         // Creating adapter for spinner
         ArrayAdapter<String> employeeIDSpinnerAdapter = new ArrayAdapter<String>(this,
@@ -269,44 +218,6 @@ public class AssignShift extends Activity {
     public void assignShiftOnConfirm(View view) {
     }
 
-    private class MyTask extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-
-            if (tasks.size() == 0) {
-                pb.setVisibility(View.VISIBLE);
-            }
-            tasks.add(this);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String content = HttpManager.getData(params[0]);
-            return content;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            assignShiftPlainOldJavaObjectsList = assignShiftJSONParser.parseFeed(result);
-            updateDisplay();
-            addItemsToEmployeeIDSpinner();
-            addItemsToEmployeeNameSpinner();
-
-            tasks.remove(this);
-            if (tasks.size() == 0) {
-                pb.setVisibility(View.INVISIBLE);
-            }
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values)
-        {
-
-        }
-
-    }
 
 
 }
