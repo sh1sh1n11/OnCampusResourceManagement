@@ -8,7 +8,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
@@ -54,6 +53,18 @@
         <activity
             android:name=".Cancel_Cafe_Operating_Hours"
             android:label="@string/title_activity_cancel__cafe__operating__hours" >
+        </activity>
+        <activity
+            android:name=".ch_confirm_cancellation"
+            android:label="@string/title_activity_ch_confirm_cancellation" >
+        </activity>
+        <activity
+            android:name=".ch_updated_cafe_hours"
+            android:label="@string/title_activity_ch_updated_cafe_hours" >
+        </activity>
+        <activity
+            android:name=".ch_enter_or_cancel_cafehours"
+            android:label="@string/title_activity_ch_enter_or_cancel_cafehours" >
         </activity>
     </application>
 

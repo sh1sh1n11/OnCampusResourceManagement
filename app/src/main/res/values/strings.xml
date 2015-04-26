@@ -37,7 +37,13 @@
     <string name="ch_confirm">CONFIRM</string>
     <string name="ch_pick_date">PICK DATE</string>
     <string name="ch_pick_time">PICK TIME</string>
+    <string name="ch_yes_button">YES</string>
+    <string name="ch_no_button">NO</string>
+    <string name="ch_home_button">HOME</string>
     <string name="assignShift_pickDate">pick date</string>
     <string name="title_activity_cancel__cafe__operating__hours">Cancel_Cafe_Operating_Hours</string>
+    <string name="title_activity_ch_confirm_cancellation">ch_confirm_cancellation</string>
+    <string name="title_activity_ch_updated_cafe_hours">ch_updated_cafe_hours</string>
+    <string name="title_activity_ch_enter_or_cancel_cafehours">ch_enter_or_cancel_cafehours</string>
 
 </resources>
