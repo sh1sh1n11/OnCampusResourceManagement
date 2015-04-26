@@ -36,6 +36,7 @@ public class AssignShift extends Activity {
     String itemSelectedInIDSpinner;
     Spinner employeeNameSpinner, employeeIdSpinner;
     ImageButton pickDate, pickStartTime, pickEndTime, Confirm;
+    TextView resultArea;
 
 
     @Override
@@ -112,6 +113,7 @@ public class AssignShift extends Activity {
         Confirm = (ImageButton) findViewById(R.id.assignShiftConfirm );
         employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
+        resultArea = (TextView) findViewById(R.id.resultArea);
     }
 
 
@@ -203,6 +205,7 @@ public class AssignShift extends Activity {
     }
 
     public void assignShiftOnConfirm(View view) {
+        resultArea.setText(itemSelectedInIDSpinner + " " + itemSelectedInNameSpinner + " " + date + " " + sTime + " " + eTime);
     }
 
 
