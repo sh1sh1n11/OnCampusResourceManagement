@@ -43,6 +43,8 @@ public class AssignShift extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_shift);
         initializeWidgets();
+        addItemsToEmployeeIDSpinner();
+        addItemsToEmployeeNameSpinner();
         spinnersUserInput();
         setListeners();
 
@@ -113,25 +115,12 @@ public class AssignShift extends Activity {
     }
 
 
-    protected boolean isOnline() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
     private void addItemsToEmployeeIDSpinner() {
 
         employeeIdSpinner = (Spinner) findViewById(R.id.EmployeeIDSpinner);
-        List<String> labels = new ArrayList<String>();
 
         // Creating adapter for spinner
-        ArrayAdapter<String> employeeIDSpinnerAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, labels);
+        ArrayAdapter<CharSequence> employeeIDSpinnerAdapter = ArrayAdapter.createFromResource(this,R.array.userIDs, android.R.layout.simple_spinner_item);
 
         // Drop down layout style - list view with radio button
         employeeIDSpinnerAdapter
@@ -145,18 +134,16 @@ public class AssignShift extends Activity {
     private void addItemsToEmployeeNameSpinner() {
 
         employeeNameSpinner = (Spinner) findViewById(R.id.EmployeeNameSpinner);
-        List<String> labels = new ArrayList<String>();
 
         // Creating adapter for spinner
-        ArrayAdapter<String> employeeIDSpinnerAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, labels);
+        ArrayAdapter<CharSequence> employeeNameSpinnerAdapter = ArrayAdapter.createFromResource(this,R.array.userNames, android.R.layout.simple_spinner_item);
 
         // Drop down layout style - list view with radio button
-        employeeIDSpinnerAdapter
+        employeeNameSpinnerAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        employeeNameSpinner.setAdapter(employeeIDSpinnerAdapter);
+        employeeNameSpinner.setAdapter(employeeNameSpinnerAdapter);
 
     }
 
