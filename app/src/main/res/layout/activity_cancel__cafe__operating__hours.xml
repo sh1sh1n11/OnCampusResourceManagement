@@ -1,13 +1,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".cafe_hours">
-
+    tools:context="msisproject1.com.project1.Cancel_Cafe_Operating_Hours">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -16,15 +13,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/ch_image"
+        android:src="@drawable/cancelcafehrs1"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ch_start_date"
-        android:id="@+id/ch_start_date"
+        android:text="@string/ch_cafe_name"
+        android:id="@+id/ch_cafe_name"
         android:layout_below="@+id/ch_title_bar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -32,28 +29,27 @@
         android:textStyle="bold"
         android:textColor="#ff000000" />
 
-    <Button
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ch_pick_date"
-        android:id="@+id/ch_start_date_button"
-        android:layout_alignBottom="@+id/ch_start_date"
-        android:layout_toRightOf="@+id/ch_start_date"
+        android:id="@+id/ch_enter_cafe_name"
+        android:layout_alignBottom="@+id/ch_cafe_name"
+        android:layout_toRightOf="@+id/ch_cafe_name"
         android:layout_marginLeft="69dp"
         android:layout_marginStart="69dp"
-        android:layout_alignTop="@+id/ch_start_date"
-        android:background="#ffadadad"
+        android:layout_alignTop="@+id/ch_cafe_name"
         android:textSize="@dimen/abc_text_size_small_material"
         android:layout_alignRight="@+id/ch_title_bar"
         android:layout_alignEnd="@+id/ch_title_bar"
-        android:onClick="showDatePickerDialog" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ch_end_date"
-        android:id="@+id/ch_end_date"
-        android:layout_below="@+id/ch_start_date"
+        android:text="@string/ch_cancel_date"
+        android:id="@+id/ch_cancel_date"
+        android:layout_below="@+id/ch_cafe_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="27dp"
@@ -64,49 +60,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ch_pick_date"
-        android:id="@+id/ch_end_date_button"
+        android:id="@+id/ch_cancel_date_button"
+        android:layout_alignBottom="@+id/ch_cancel_date"
+        android:layout_toRightOf="@+id/ch_cancel_date"
+        android:layout_marginLeft="69dp"
+        android:layout_marginStart="69dp"
+        android:layout_alignTop="@+id/ch_cancel_date"
         android:background="#ffadadad"
         android:textSize="@dimen/abc_text_size_small_material"
-        android:layout_alignTop="@+id/ch_end_date"
-        android:layout_alignLeft="@+id/ch_start_date_button"
-        android:layout_alignStart="@+id/ch_start_date_button"
         android:layout_alignRight="@+id/ch_title_bar"
         android:layout_alignEnd="@+id/ch_title_bar"
-        android:layout_alignBottom="@+id/ch_end_date"
         android:onClick="showDatePickerDialog" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ch_day"
-        android:id="@+id/ch_day"
-        android:layout_below="@+id/ch_end_date"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="27dp"
-        android:textStyle="bold"
-        android:textColor="#ff000000" />
-
-    <Spinner
-        android:id="@+id/ch_day_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ch_day"
-        android:layout_alignLeft="@+id/ch_end_date_button"
-        android:layout_alignStart="@+id/ch_end_date_button"
-        android:layout_alignRight="@+id/ch_title_bar"
-        android:layout_alignEnd="@+id/ch_title_bar"
-        android:layout_alignBottom="@+id/ch_day"
-        android:entries="@array/ch_spinner_day"
-        android:textStyle="bold"
-        />
+   
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ch_open_time"
         android:id="@+id/ch_open_time"
-        android:layout_below="@+id/ch_day"
+        android:layout_below="@+id/ch_cancel_date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="27dp"
@@ -121,8 +94,8 @@
         android:background="#ffadadad"
         android:textSize="@dimen/abc_text_size_small_material"
         android:layout_alignTop="@+id/ch_open_time"
-        android:layout_alignLeft="@+id/ch_start_date_button"
-        android:layout_alignStart="@+id/ch_start_date_button"
+        android:layout_alignLeft="@+id/ch_cancel_date_button"
+        android:layout_alignStart="@+id/ch_cancel_date_button"
         android:layout_alignRight="@+id/ch_title_bar"
         android:layout_alignEnd="@+id/ch_title_bar"
         android:layout_alignBottom="@+id/ch_open_time"
@@ -148,8 +121,8 @@
         android:background="#ffadadad"
         android:textSize="@dimen/abc_text_size_small_material"
         android:layout_alignTop="@+id/ch_close_time"
-        android:layout_alignLeft="@+id/ch_start_date_button"
-        android:layout_alignStart="@+id/ch_start_date_button"
+        android:layout_alignLeft="@+id/ch_cancel_date_button"
+        android:layout_alignStart="@+id/ch_cancel_date_button"
         android:layout_alignRight="@+id/ch_title_bar"
         android:layout_alignEnd="@+id/ch_title_bar"
         android:layout_alignBottom="@+id/ch_close_time"
@@ -173,7 +146,3 @@
 
 
 </RelativeLayout>
-
-
-
-

@@ -2,11 +2,25 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\classes-80d45417327689924c7b8940c602f2e4088c13ba.jar" />
+    </item>
+    <item
         jar="C:\Users\Janani\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-b8b4141f11893fd0f40c12354a8cfea7fe0916b6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\libs\Parse-1.9.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1b065010f3c9d441ede9078aca8eabcd1c81e647">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\Parse-1.9.1-9c98428a0848fefb29c3e9435c4255cc704026ce.jar" />
     </item>
     <item
         jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
@@ -16,18 +30,18 @@
         <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-955b7797a0bac6fa0f29bdf682a60ecec6df79ee.jar" />
     </item>
     <item
-        jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\classes-80d45417327689924c7b8940c602f2e4088c13ba.jar" />
-    </item>
-    <item
         jar="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d84409890828e07d344a3b9b1da545dba9897b51">
         <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\classes-674119f070cdd294b901bd3656f7c14d808fcd23.jar" />
+    </item>
+    <item
+        jar="C:\Users\Janani\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="C:\Users\Janani\AndroidStudioProjects\OnCampusResourceManagement\app\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-0d10306d083160320b791a01efc9d1ea3674651e.jar" />
     </item>
 
 </items>

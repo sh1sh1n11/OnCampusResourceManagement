@@ -13,11 +13,12 @@
     <string name="title_activity_main_activity6">MainActivity6</string>
     <string name="title_activity_assign_shift">AssignShift</string>
     <string name="title_activity_cafe_hours">cafe_hours</string>
-
-
     <string name="ch_start_date">START DATE</string>
     <string name="ch_end_date">END DATE</string>
     <string name="ch_day">DAY</string>
+    <string name="ch_cancel_date">CANCEL DATE</string>
+    <string name="ch_cafe_name">CAFE NAME</string>
+
     <!-- Spinner Options -->
 
     <string-array name="ch_spinner_day">
@@ -30,13 +31,13 @@
         <item>Sunday</item>
     </string-array>
 
+    <string name="ch_enter_cafe_name">ENTER CAFE NAME</string>
     <string name="ch_open_time">OPEN TIME</string>
     <string name="ch_close_time">CLOSE TIME</string>
-    <string name="ch_submit">SUBMIT</string>
+    <string name="ch_confirm">CONFIRM</string>
     <string name="ch_pick_date">PICK DATE</string>
     <string name="ch_pick_time">PICK TIME</string>
-
     <string name="assignShift_pickDate">pick date</string>
-
+    <string name="title_activity_cancel__cafe__operating__hours">Cancel_Cafe_Operating_Hours</string>
 
 </resources>

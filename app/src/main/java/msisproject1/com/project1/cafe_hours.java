@@ -17,6 +17,8 @@ package msisproject1.com.project1;
         import java.text.DateFormat;
         import android.widget.AdapterView;
 
+        import com.parse.Parse;
+        import com.parse.ParseObject;
 
 
 public class cafe_hours extends ActionBarActivity {
@@ -42,6 +44,16 @@ public class cafe_hours extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe_hours);
+
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "14cEQnuwGGemEz0qh5QVqiOe23YAKPRkxioNRKmo", "n1KXKovLsVwufDgIRU77kjAkhrd13OUEeI56gzRD");
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
+        ParseObject cafe_hours_data_base = new ParseObject("cafe_hours_data_base");
 
         start_date = (Button) findViewById(R.id.ch_start_date_button);
 
@@ -147,6 +159,7 @@ public class cafe_hours extends ActionBarActivity {
                 System.out.print(start_date_up+":start_date \n");
                 start_date.setText(start_date_up);
 
+
             }
         };
 
@@ -191,6 +204,7 @@ public class cafe_hours extends ActionBarActivity {
                 close_time.setText(close_time_up);
             }
         };
+
 
     }
 
