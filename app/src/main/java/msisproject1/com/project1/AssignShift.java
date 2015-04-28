@@ -14,6 +14,10 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -40,6 +44,16 @@ public class AssignShift extends Activity {
         addItemsToEmployeeNameSpinner();
         spinnersUserInput();
         setListeners();
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+                               //App ID                                    //Client ID
+        Parse.initialize(this, "06b0m9XlCqdZPcnH5R8kzFL48IqyOIocA48HIf9a", "KL3M90renbXqbvKLPSUQXqY9p48vzVOmRFPkHj7J");
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
 
     }
 

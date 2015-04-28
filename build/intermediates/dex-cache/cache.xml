@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/libs/Parse-1.9.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1b065010f3c9d441ede9078aca8eabcd1c81e647">
+        <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/Parse-1.9.1-858eb25c91ec3a7460ed42d8192faf01849c829b.jar" />
+    </item>
+    <item
         jar="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -14,6 +21,13 @@
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-2e2e0aa0bfacdcec82f0926231528091942a654a.jar" />
+    </item>
+    <item
+        jar="/Users/shanky/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.2.0/6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd/bolts-android-1.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/pre-dexed/debug/bolts-android-1.2.0-a161922bf24f0c8474622ecb2356640797f148ae.jar" />
     </item>
     <item
         jar="/Users/shanky/AndroidStudioProjects/OnCampusResourceManagement/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
