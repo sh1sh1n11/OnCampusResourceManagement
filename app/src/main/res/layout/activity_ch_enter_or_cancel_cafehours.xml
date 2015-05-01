@@ -23,27 +23,28 @@
         android:layout_height="wrap_content"
         android:text="@string/ch_cafe_name"
         android:id="@+id/ch_cafe_name"
-        android:layout_below="@+id/ch_title_bar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="53dp"
         android:textStyle="bold"
-        android:textColor="#ff000000" />
+        android:textColor="#ff000000"
+        android:layout_below="@+id/ch_title_bar"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ch_enter_cafe_name"
-        android:layout_alignBottom="@+id/ch_cafe_name"
         android:layout_toRightOf="@+id/ch_cafe_name"
         android:layout_marginLeft="69dp"
         android:layout_marginStart="69dp"
-        android:layout_alignTop="@+id/ch_cafe_name"
         android:textSize="@dimen/abc_text_size_small_material"
         android:layout_alignRight="@+id/ch_title_bar"
         android:layout_alignEnd="@+id/ch_title_bar"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/ch_cafe_name"
+        android:layout_below="@+id/ch_title_bar" />
 
 
     <Button

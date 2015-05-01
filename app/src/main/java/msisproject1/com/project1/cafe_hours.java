@@ -154,7 +154,7 @@ public class cafe_hours extends ActionBarActivity {
                 cal.set(Calendar.YEAR, year);
                 cal.set(Calendar.MONTH, monthOfYear);
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                start_date_up = year+"/"+monthOfYear+"/"+dayOfMonth;
+                //start_date_up = year+"/"+monthOfYear+"/"+dayOfMonth;
                 start_date_up = monthOfYear+"/"+dayOfMonth+"/"+year;
                 System.out.print(start_date_up+":start_date \n");
                 start_date.setText(start_date_up);
