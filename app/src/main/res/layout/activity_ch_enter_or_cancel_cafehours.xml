@@ -44,7 +44,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignBottom="@+id/ch_cafe_name"
-        android:layout_below="@+id/ch_title_bar" />
+        />
 
 
     <Button

@@ -14,6 +14,8 @@ import java.util.Calendar;
 
 public class MainActivity2 extends ActionBarActivity {
     Button Missionbakery;
+    Button Cadence;
+    Button Sunstream;
     String menu1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,27 @@ public class MainActivity2 extends ActionBarActivity {
                 startActivity(enter_cancel_cafehrs);
                            }
         });
+
+        Cadence = (Button) findViewById(R.id.button2);
+        Cadence.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                menu1 =  Cadence.getText().toString();
+                enter_cancel_cafehrs.putExtra("cafe_name", menu1);
+                startActivity(enter_cancel_cafehrs);
+            }
+        });
+
+        Sunstream = (Button) findViewById(R.id.button3);
+        Sunstream.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                menu1 =  Sunstream.getText().toString();
+                enter_cancel_cafehrs.putExtra("cafe_name", menu1);
+                startActivity(enter_cancel_cafehrs);
+            }
+        });
+
 
         return true;
     }

@@ -3,9 +3,11 @@ package msisproject1.com.project1;
 
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
+        import android.view.Gravity;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.widget.Button;
+        import android.widget.EditText;
         import android.widget.Spinner;
         import android.view.View;
         import android.view.View.OnClickListener;
@@ -16,6 +18,7 @@ package msisproject1.com.project1;
         import android.app.TimePickerDialog;
         import java.text.DateFormat;
         import android.widget.AdapterView;
+        import android.widget.Toast;
 
         import com.parse.Parse;
         import com.parse.ParseObject;
@@ -30,13 +33,16 @@ public class cafe_hours extends ActionBarActivity {
     Spinner weekday;
     Button submit;
 
+    EditText cafe_name;
+    String cn;
+
     TimePickerDialog.OnTimeSetListener tpd,tpd2;
     DatePickerDialog.OnDateSetListener dpd,dpd2;
     Calendar cal = Calendar.getInstance();
     DateFormat dt = DateFormat.getInstance();
 
-    String date_update,end_date_up,start_date_up;
-    String time_update,open_time_up,close_time_up;
+    String end_date_up=null,start_date_up=null;
+    String open_time_up=null,close_time_up=null;
     String selected_day;
 
 
@@ -45,15 +51,16 @@ public class cafe_hours extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe_hours);
 
-        Parse.enableLocalDatastore(this);
+      //  Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, "14cEQnuwGGemEz0qh5QVqiOe23YAKPRkxioNRKmo", "n1KXKovLsVwufDgIRU77kjAkhrd13OUEeI56gzRD");
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
+        final ParseObject cafe_hours_data_base = new ParseObject("cafe_hours_data_base");
 
-        ParseObject cafe_hours_data_base = new ParseObject("cafe_hours_data_base");
+
+        cafe_name = (EditText)findViewById(R.id.ch_enter_cafe_name);
+        cn=getIntent().getExtras().getString("cafe_name");
+        cafe_name.setText(cn);
 
         start_date = (Button) findViewById(R.id.ch_start_date_button);
 
@@ -139,7 +146,21 @@ public class cafe_hours extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // TO DO
-                System.out.print("Button pressed!!!!!! \n");
+                Toast toast = Toast.makeText(getApplicationContext(),cn+"Operating hours entered",
+                        Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.BOTTOM| Gravity.CENTER, 0, 0);
+                toast.show();
+
+                // update the parse database
+
+                cafe_hours_data_base.put("cafe_name", cn);
+                cafe_hours_data_base.put("start_date", start_date_up);
+                cafe_hours_data_base.put("end_date",end_date_up);
+                cafe_hours_data_base.put("open_time", open_time_up);
+                cafe_hours_data_base.put("close_time",close_time_up);
+                cafe_hours_data_base.put("Selected_day",selected_day);
+                cafe_hours_data_base.saveInBackground();
+
                 // update to the data base
             }
         });
@@ -155,6 +176,10 @@ public class cafe_hours extends ActionBarActivity {
                 cal.set(Calendar.MONTH, monthOfYear);
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 //start_date_up = year+"/"+monthOfYear+"/"+dayOfMonth;
+                if (monthOfYear == 12)
+                    monthOfYear = 0;
+                else
+                    monthOfYear = monthOfYear + 1;
                 start_date_up = monthOfYear+"/"+dayOfMonth+"/"+year;
                 System.out.print(start_date_up+":start_date \n");
                 start_date.setText(start_date_up);
@@ -171,6 +196,7 @@ public class cafe_hours extends ActionBarActivity {
                 cal.set(Calendar.HOUR_OF_DAY, hourofday);
                 cal.set(Calendar.MINUTE, minute);
                 open_time_up = hourofday+":"+minute;
+
                 System.out.print(open_time_up+":open_time \n");
                 open_time.setText(open_time_up);
             }
@@ -185,6 +211,10 @@ public class cafe_hours extends ActionBarActivity {
                 cal.set(Calendar.YEAR, year);
                 cal.set(Calendar.MONTH, monthOfYear);
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                if (monthOfYear == 12)
+                    monthOfYear = 0;
+                else
+                    monthOfYear = monthOfYear + 1;
                 end_date_up = monthOfYear+"/"+dayOfMonth+"/"+year;
                 System.out.print(end_date_up+":end_date \n");
                 end_date.setText(end_date_up);

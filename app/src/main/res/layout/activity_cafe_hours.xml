@@ -40,7 +40,6 @@
         android:layout_toRightOf="@+id/ch_cafe_name"
         android:layout_marginLeft="69dp"
         android:layout_marginStart="69dp"
-        android:layout_alignTop="@+id/ch_cafe_name"
         android:textSize="@dimen/abc_text_size_small_material"
         android:layout_alignRight="@+id/ch_title_bar"
         android:layout_alignEnd="@+id/ch_title_bar"
