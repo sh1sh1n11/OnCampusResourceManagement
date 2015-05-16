@@ -17,7 +17,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,9 +40,10 @@
         android:textStyle="bold"
         android:background="#ffadadad"
         android:textColor="#ff000000"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/ch_no_button_button"
         android:layout_alignLeft="@+id/ch_no_button_button"
-        android:layout_alignStart="@+id/ch_no_button_button" />
+        android:layout_alignStart="@+id/ch_no_button_button"
+        android:layout_marginBottom="54dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,8 +54,8 @@
         android:textColor="#ff000000"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_small_material"
-        android:layout_below="@+id/ch_yes_button"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp" />
+        android:layout_marginBottom="50dp" />
 
 </RelativeLayout>

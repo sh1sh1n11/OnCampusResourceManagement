@@ -16,6 +16,8 @@ public class MainActivity2 extends ActionBarActivity {
     Button Missionbakery;
     Button Cadence;
     Button Sunstream;
+    Button cellarmarket,marketplace,broncos;
+
     String menu1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,38 @@ public class MainActivity2 extends ActionBarActivity {
                 startActivity(enter_cancel_cafehrs);
             }
         });
+
+        
+        cellarmarket = (Button) findViewById(R.id.button4);
+        cellarmarket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                menu1 =  cellarmarket.getText().toString();
+                enter_cancel_cafehrs.putExtra("cafe_name", menu1);
+                startActivity(enter_cancel_cafehrs);
+            }
+        });
+
+        marketplace = (Button) findViewById(R.id.button5);
+        marketplace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                menu1 =  marketplace.getText().toString();
+                enter_cancel_cafehrs.putExtra("cafe_name", menu1);
+                startActivity(enter_cancel_cafehrs);
+            }
+        });
+
+        broncos = (Button) findViewById(R.id.button6);
+        broncos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                menu1 =  broncos.getText().toString();
+                enter_cancel_cafehrs.putExtra("cafe_name", menu1);
+                startActivity(enter_cancel_cafehrs);
+            }
+        });
+
 
 
         return true;
