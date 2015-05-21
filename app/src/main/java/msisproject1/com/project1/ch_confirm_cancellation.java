@@ -34,6 +34,7 @@ public class ch_confirm_cancellation extends ActionBarActivity {
     String start_time;
     String end_time;
     String day_sel;
+    int open_or_not = 1;
     SimpleDateFormat formatter ;
     Date date_start,date_end,date_cancel ;
 
@@ -89,6 +90,12 @@ public class ch_confirm_cancellation extends ActionBarActivity {
                                             cancel_cafe_hours.put("open_time", start_time);
                                             cancel_cafe_hours.put("close_time", end_time);
                                             cancel_cafe_hours.put("Selected_day", day_name);
+                                            if (start_time.equals(end_time)) {
+                                               cancel_cafe_hours.put("cafe_open_or_closed", 0);
+                                            } else {
+                                               cancel_cafe_hours.put("cafe_open_or_closed", 1);
+
+                                            }
                                             cancel_cafe_hours.saveInBackground();
 
                                         }
